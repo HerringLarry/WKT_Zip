@@ -1,4 +1,4 @@
-import com.sun.xml.internal.org.jvnet.fastinfoset.sax.FastInfosetReader;
+//import com.sun.xml.internal.org.jvnet.fastinfoset.sax.FastInfosetReader;
 
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -46,7 +46,7 @@ public class WKTZip {
     //Creates .txt file in WKT format (THE MEAT OF THE PROGRAM
     public void createWKT() {
         writer.println("id|wkt");
-
+        int x = 0;
         this.setDelimiter(read, ",|\\n"); //sets delimiter to both ',' and '/n' (new line)
 
         for (int i = 0; i < columns; i++) { //loops through header row
@@ -59,7 +59,7 @@ public class WKTZip {
             String firstLat = "a";
             String secLong = "a";
             String secLat = "a";
-
+            x += 1;
             for (int i = 0; i < columns; i++) { //Loops through
                 if (i == 7) { //If at 7th item in row put first coordinate in firstLong variable
                     firstLong = read.next();
@@ -82,13 +82,14 @@ public class WKTZip {
             }
 
         }
+        System.out.println(x); //Count of iterations
     }
 
 
     //Main Function
     public static void main(String[] args) {
        WKTZip zipper;
-       zipper = new WKTZip("/Users/williamnewman/Desktop/From100G.csv", "/Users/williamnewman/Desktop/taxi_lines.txt", 22);
+       zipper = new WKTZip("/Users/williamnewman/Desktop/From100G.csv", "/Users/williamnewman/Desktop/taxilines.txt", 22);
        zipper.createWKT();
 
     }
